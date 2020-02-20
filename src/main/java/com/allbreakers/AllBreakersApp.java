@@ -10,8 +10,8 @@ class AllBreakersApp {
         FileReader fileReader = new FileReader();
         FileFactory fileFactory = new FileFactory();
 
-        fileFactory.write("output1", fileReader.read("/files/first", ";").description());
-        fileFactory.write("output2", fileReader.read("/files/second", " ", ";").description());
-        fileFactory.write("output3", fileReader.read("/files/third", "&").description());
+        fileFactory.write("result/output1", fileReader.read("/files/first", ";").description());
+        fileFactory.write("result/output2", fileReader.read("/files/second", " ", ";").description());
+        fileFactory.write("result/output3", fileReader.read("/files/third", "&").description());
     }
 }
