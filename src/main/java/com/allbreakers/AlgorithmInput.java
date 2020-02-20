@@ -3,18 +3,19 @@ package com.allbreakers;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 class AlgorithmInput {
     private ScanningFacility scanningFacility;
-    private HashMap<Integer, Integer> books = new HashMap<>();
+    private Map<Integer, Book> books = new HashMap<>();
     private List<Library> libraries = new ArrayList<>();
 
     void add(ScanningFacility scanningFacility) {
         this.scanningFacility = scanningFacility;
     }
 
-    void addBook(int id, int score) {
-        books.put(id, score);
+    void addBook(Book book) {
+        books.put(book.getId(), book);
     }
 
     void add(Library library) {
@@ -23,10 +24,6 @@ class AlgorithmInput {
 
     ScanningFacility getScanningFacility() {
         return scanningFacility;
-    }
-
-    HashMap<Integer, Integer> getBooks() {
-        return books;
     }
 
     List<Library> getLibraries() {
@@ -40,5 +37,9 @@ class AlgorithmInput {
                 ", \nbooks=" + books +
                 ", \nlibraries=" + libraries +
                 '}';
+    }
+
+    Book getBookById(Integer id) {
+        return books.get(id);
     }
 }

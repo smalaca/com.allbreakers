@@ -7,9 +7,9 @@ class Library {
     private int id;
     private int signupTimeDays;
     private int booksPerDay;
-    private List<Integer> books;
+    private List<Book> books;
 
-    void addBooks(List<Integer> books) {
+    void addBooks(List<Book> books) {
         this.books = books;
     }
 
@@ -37,7 +37,7 @@ class Library {
         return booksPerDay;
     }
 
-    List<Integer> getBooks() {
+    List<Book> getBooks() {
         return books;
     }
 
@@ -54,11 +54,18 @@ class Library {
         return true;
     }
 
-    List<Integer> booksThatWillBeScannedInNext(int daysForCalculation) {
+    List<Book> booksThatWillBeScannedInNext(int daysForCalculation) {
+        int bandwidth = daysForCalculation * getBooksPerDay();
+        if(bandwidth > getBooks().size()){
+            return books;
+        }
+
+//        List<Book> bookz = 0
+
         return Collections.emptyList();
     }
 
-    void removeAll(List<Integer> booksThatWillBeScannedTillDeadline) {
+    void removeAll(List<Book> booksThatWillBeScannedTillDeadline) {
         books.removeAll(booksThatWillBeScannedTillDeadline);
     }
 }

@@ -23,7 +23,7 @@ class AlgorithmInputFactory {
         // line 2
         int bookId = 0;
         for (FileValue value : lines.get(1).values()) {
-            input.addBook(bookId++, value.asInt());
+            input.addBook(new Book(bookId++, value.asInt()));
         }
 
         // libraries information
@@ -40,7 +40,11 @@ class AlgorithmInputFactory {
 
             // books
             FileLine libraryBooks = lines.get(2 * currentLibrary + 3);
-            library.addBooks(libraryBooks.values().stream().map(FileValue::asInt).collect(Collectors.toList()));
+            List<Book> books = libraryBooks.values().stream()
+                    .map(FileValue::asInt)
+                    .map(id -> input.getBookById(id))
+                    .collect(Collectors.toList());
+            library.addBooks(books);
 
             input.add(library);
         }

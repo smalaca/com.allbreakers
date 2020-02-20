@@ -35,22 +35,26 @@ class AllBreakersApp {
     private static void fullCycle(List<Library> libraries, int availableTime, int currentDay, Output output) {
 
         // Chose the best
-        Library theBest = null;
+        Library theBestLibrary = null;
         for (Library library : libraries) {
-            if (library.getSignupTimeDays() < availableTime && library.isBetterThan(theBest)) {
-                theBest = library;
+            if (library.getSignupTimeDays() < availableTime && library.isBetterThan(theBestLibrary)) {
+                theBestLibrary = library;
             }
         }
-        libraries.remove(theBest);
+        libraries.remove(theBestLibrary);
 
         // signup
-        if(theBest != null) {
-            currentDay += theBest.getSignupTimeDays();
-            availableTime -= theBest.getSignupTimeDays();
+        if(theBestLibrary != null) {
+            currentDay += theBestLibrary.getSignupTimeDays();
+            availableTime -= theBestLibrary.getSignupTimeDays();
 
             // remove all books to not include them again
             List<Integer> booksThatWillBeScannedTillDeadline = theBest.booksThatWillBeScannedInNext(availableTime - currentDay);
             output.add(theBest.getId(), booksThatWillBeScannedTillDeadline);
+            // wtf start
+            List<Book> booksThatWillBeScannedTillDeadline = theBestLibrary.booksThatWillBeScannedInNext(availableTime - currentDay);
+            scanningFacility.add(booksThatWillBeScannedTillDeadline);
+            // wtf end
 
             // remove from all libraries
             for (Library library : libraries) {

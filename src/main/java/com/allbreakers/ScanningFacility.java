@@ -6,7 +6,7 @@ import java.util.Set;
 
 public class ScanningFacility {
     private final int availableTime;
-    private final Set<Integer> books = new HashSet<>();
+    private final Set<Book> books = new HashSet<>();
 
     public ScanningFacility(int availableTime) {
         this.availableTime = availableTime;
@@ -14,10 +14,6 @@ public class ScanningFacility {
 
     int getAvailableTime() {
         return availableTime;
-    }
-
-    Set<Integer> getBooks() {
-        return books;
     }
 
     @Override
@@ -28,7 +24,7 @@ public class ScanningFacility {
                 '}';
     }
 
-    void add(List<Integer> sortedBooksInNext) {
-
+    void add(List<Book> books) {
+        this.books.addAll(books);
     }
 }
