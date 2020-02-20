@@ -1,6 +1,7 @@
 package com.allbreakers;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class ScanningFacility {
@@ -11,11 +12,23 @@ public class ScanningFacility {
         this.availableTime = availableTime;
     }
 
+    int getAvailableTime() {
+        return availableTime;
+    }
+
+    Set<Integer> getBooks() {
+        return books;
+    }
+
     @Override
     public String toString() {
         return "ScanningFacility{" +
                 "availableTime=" + availableTime +
                 ", books=" + books +
                 '}';
+    }
+
+    void add(List<Integer> sortedBooksInNext) {
+
     }
 }

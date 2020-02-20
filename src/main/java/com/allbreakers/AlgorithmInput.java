@@ -21,6 +21,18 @@ class AlgorithmInput {
         libraries.add(library);
     }
 
+    ScanningFacility getScanningFacility() {
+        return scanningFacility;
+    }
+
+    HashMap<Integer, Integer> getBooks() {
+        return books;
+    }
+
+    List<Library> getLibraries() {
+        return libraries;
+    }
+
     @Override
     public String toString() {
         return "AlgorithmInput{" +

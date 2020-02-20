@@ -1,5 +1,6 @@
 package com.allbreakers;
 
+import java.util.Collections;
 import java.util.List;
 
 class Library {
@@ -19,6 +20,18 @@ class Library {
         this.booksPerDay = booksPerDay;
     }
 
+    int getSignupTimeDays() {
+        return signupTimeDays;
+    }
+
+    int getBooksPerDay() {
+        return booksPerDay;
+    }
+
+    List<Integer> getBooks() {
+        return books;
+    }
+
     @Override
     public String toString() {
         return "\nLibrary{" +
@@ -26,5 +39,17 @@ class Library {
                 ", booksPerDay=" + booksPerDay +
                 ", books=" + books +
                 '}';
+    }
+
+    boolean isBetterThan(Library library) {
+        return true;
+    }
+
+    List<Integer> booksThatWillBeScannedInNext(int daysForCalculation) {
+        return Collections.emptyList();
+    }
+
+    void removeAll(List<Integer> booksThatWillBeScannedTillDeadline) {
+        books.removeAll(booksThatWillBeScannedTillDeadline);
     }
 }
