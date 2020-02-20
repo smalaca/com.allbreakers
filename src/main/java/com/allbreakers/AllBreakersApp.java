@@ -1,5 +1,7 @@
 package com.allbreakers;
 
+import com.allbreakers.file.Output;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -24,12 +26,14 @@ class AllBreakersApp {
         int availableTime = scanningFacility.getAvailableTime();
         int currentDay = 1;
 
-        fullCycle(libraries, scanningFacility, availableTime, currentDay);
+        Output output = new Output();
+        fullCycle(libraries, availableTime, currentDay, output);
 
-        System.out.println(input.toString());
+        System.out.println(output.description());
     }
 
-    private static void fullCycle(List<Library> libraries, ScanningFacility scanningFacility, int availableTime, int currentDay) {
+    private static void fullCycle(List<Library> libraries, int availableTime, int currentDay, Output output) {
+
         // Chose the best
         Library theBest = null;
         for (Library library : libraries) {
@@ -46,7 +50,7 @@ class AllBreakersApp {
 
             // remove all books to not include them again
             List<Integer> booksThatWillBeScannedTillDeadline = theBest.booksThatWillBeScannedInNext(availableTime - currentDay);
-            scanningFacility.add(booksThatWillBeScannedTillDeadline);
+            output.add(theBest.getId(), booksThatWillBeScannedTillDeadline);
 
             // remove from all libraries
             for (Library library : libraries) {
@@ -55,7 +59,7 @@ class AllBreakersApp {
 
             // can we continue
             if (!libraries.isEmpty() && currentDay != availableTime) {
-                fullCycle(libraries, scanningFacility, availableTime, currentDay);
+                fullCycle(libraries, availableTime, currentDay, output);
             }
         }
     }

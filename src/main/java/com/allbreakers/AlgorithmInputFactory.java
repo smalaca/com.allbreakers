@@ -33,6 +33,8 @@ class AlgorithmInputFactory {
             Library library = new Library();
 
             FileLine libraryMetaData = lines.get(2 * currentLibrary + 2);
+
+            library.setId(currentLibrary);
             library.setSignupTimeDays(libraryMetaData.getValue(1).asInt());
             library.setBooksPerDay(libraryMetaData.getValue(2).asInt());
 

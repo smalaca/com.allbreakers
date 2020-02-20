@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.List;
 
 class Library {
+    private int id;
     private int signupTimeDays;
     private int booksPerDay;
     private List<Integer> books;
@@ -18,6 +19,14 @@ class Library {
 
     void setBooksPerDay(int booksPerDay) {
         this.booksPerDay = booksPerDay;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
     }
 
     int getSignupTimeDays() {
