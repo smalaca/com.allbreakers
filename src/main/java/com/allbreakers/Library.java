@@ -1,8 +1,9 @@
 package com.allbreakers;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 class Library {
     private int id;
@@ -52,18 +53,23 @@ class Library {
     }
 
     boolean isBetterThan(Library library) {
-        return true;
+        return !books.isEmpty();
     }
 
     List<Book> booksThatWillBeScannedInNext(int daysForCalculation) {
         BigInteger bandwidth = BigInteger.valueOf(daysForCalculation).multiply(BigInteger.valueOf(getBooksPerDay()));
-        if(bandwidth.compareTo(BigInteger.valueOf(getBooks().size())) == 0) {
+        if(bandwidth.compareTo(BigInteger.valueOf(getBooks().size())) > -1) {
             return books;
         }
 
         books.sort(Book::compareTo);
 
-        return books.stream().limit(bandwidth.longValue()).collect(Collectors.toList());
+        List<Book> result = new ArrayList<>();
+        Iterator<Book> iterator = books.iterator();
+        for(long l=0; l<bandwidth.longValue(); l++){
+            result.add(iterator.next());
+        }
+        return result;
     }
 
     void removeAll(List<Book> booksThatWillBeScannedTillDeadline) {

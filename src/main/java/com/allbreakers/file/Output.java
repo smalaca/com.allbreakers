@@ -4,7 +4,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class Output {
-    private final Map<Integer, List<Integer>> libraries = new LinkedHashMap<>();
+    private final Map<Integer, List<Integer>> libraries = new HashMap<>();
 
     public void add(int libraryId, List<Integer> books) {
         libraries.put(libraryId, books);
