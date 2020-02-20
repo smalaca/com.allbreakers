@@ -1,15 +1,17 @@
 package com.allbreakers;
 
-import com.allbreakers.file.FileTransformer;
+import com.allbreakers.file.FileFactory;
+import com.allbreakers.file.FileReader;
 
 import java.io.IOException;
 
 class AllBreakersApp {
     public static void main(String[] args) throws IOException {
-        FileTransformer fileTransformer = new FileTransformer();
+        FileReader fileReader = new FileReader();
+        FileFactory fileFactory = new FileFactory();
 
-        System.out.println(fileTransformer.transform("/files/first", ";").description());
-        System.out.println(fileTransformer.transform("/files/second", " ", ";").description());
-        System.out.println(fileTransformer.transform("/files/third", "&").description());
+        fileFactory.write("output1", fileReader.read("/files/first", ";").description());
+        fileFactory.write("output2", fileReader.read("/files/second", " ", ";").description());
+        fileFactory.write("output3", fileReader.read("/files/third", "&").description());
     }
 }

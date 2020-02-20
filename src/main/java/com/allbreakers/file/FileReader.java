@@ -6,8 +6,8 @@ import java.io.InputStreamReader;
 
 import static java.util.Arrays.asList;
 
-public class FileTransformer {
-    public FileContent transform(String fileName, String valueSeparator) throws IOException {
+public class FileReader {
+    public FileContent read(String fileName, String valueSeparator) throws IOException {
         FileContent content = new FileContent();
 
         try (BufferedReader reader = read(fileName)) {
@@ -22,7 +22,7 @@ public class FileTransformer {
         return content;
     }
 
-    public FileContent transform(String fileName, String valueSeparator, String lineSeparator) throws IOException {
+    public FileContent read(String fileName, String valueSeparator, String lineSeparator) throws IOException {
         FileContent content = new FileContent();
 
         try (BufferedReader reader = read(fileName)) {
@@ -37,7 +37,7 @@ public class FileTransformer {
     }
 
     private BufferedReader read(String fileName) {
-        return new BufferedReader(new InputStreamReader(FileTransformer.class.getResourceAsStream(fileName)));
+        return new BufferedReader(new InputStreamReader(FileReader.class.getResourceAsStream(fileName)));
     }
 
 }
