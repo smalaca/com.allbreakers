@@ -53,7 +53,26 @@ class Library {
     }
 
     boolean isBetterThan(Library library) {
-        return !books.isEmpty();
+        if (library == null) {
+            return true;
+        }
+//
+//        if (books.isEmpty()) {
+//            return false;
+//        }
+
+        BigInteger scoreSum = getScoreSum();
+        BigInteger scoreSum1 = library.getScoreSum();
+        return scoreSum.compareTo(scoreSum1) == 1;
+    }
+
+    private BigInteger getScoreSum() {
+        BigInteger result = BigInteger.ZERO;
+        for (Book book : books) {
+            result = result.add(BigInteger.valueOf(book.getScore()));
+        }
+
+        return result.multiply(BigInteger.valueOf(booksPerDay));
     }
 
     List<Book> booksThatWillBeScannedInNext(int daysForCalculation) {
