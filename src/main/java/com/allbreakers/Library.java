@@ -1,7 +1,9 @@
 package com.allbreakers;
 
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 class Library {
     private int id;
@@ -50,19 +52,28 @@ class Library {
                 '}';
     }
 
-    boolean isBetterThan(Library library) {
-        return true;
+    boolean isBetterThan(Library library, int daysForCalculation) {
+        return this.calculateScore(daysForCalculation) > library.calculateScore(daysForCalculation);
+    }
+
+    private int calculateScore(int daysForCalculation) {
+        return booksThatWillBeScannedInNext(daysForCalculation).stream()
+                .map(Book::getScore).reduce(0, Integer::sum);
     }
 
     List<Book> booksThatWillBeScannedInNext(int daysForCalculation) {
-        int bandwidth = daysForCalculation * getBooksPerDay();
-        if(bandwidth > getBooks().size()){
+        if (daysForCalculation- signupTimeDays <= 0) {
+            return Collections.emptyList();
+        }
+        long bandwidth = (1l*daysForCalculation- signupTimeDays) * getBooksPerDay();
+        if(bandwidth >= getBooks().size()){
             return books;
         }
 
-//        List<Book> bookz = 0
-
-        return Collections.emptyList();
+        return books.stream()
+                .sorted(Comparator.comparingInt(Book::getScore).reversed())
+                .limit(bandwidth)
+                .collect(Collectors.toList());
     }
 
     void removeAll(List<Book> booksThatWillBeScannedTillDeadline) {

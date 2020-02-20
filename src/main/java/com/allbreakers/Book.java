@@ -13,7 +13,7 @@ class Book {
         return id;
     }
 
-    long getScore() {
+    int getScore() {
         return score;
     }
 }
