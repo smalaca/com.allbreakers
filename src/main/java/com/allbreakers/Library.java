@@ -1,7 +1,8 @@
 package com.allbreakers;
 
-import java.util.Collections;
+import java.math.BigInteger;
 import java.util.List;
+import java.util.stream.Collectors;
 
 class Library {
     private int id;
@@ -55,14 +56,14 @@ class Library {
     }
 
     List<Book> booksThatWillBeScannedInNext(int daysForCalculation) {
-        int bandwidth = daysForCalculation * getBooksPerDay();
-        if(bandwidth > getBooks().size()){
+        BigInteger bandwidth = BigInteger.valueOf(daysForCalculation).multiply(BigInteger.valueOf(getBooksPerDay()));
+        if(bandwidth.compareTo(BigInteger.valueOf(getBooks().size())) == 0) {
             return books;
         }
 
-//        List<Book> bookz = 0
+        books.sort(Book::compareTo);
 
-        return Collections.emptyList();
+        return books.stream().limit(bandwidth.longValue()).collect(Collectors.toList());
     }
 
     void removeAll(List<Book> booksThatWillBeScannedTillDeadline) {

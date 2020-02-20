@@ -1,5 +1,6 @@
 package com.allbreakers;
 
+import com.allbreakers.file.FileFactory;
 import com.allbreakers.file.Output;
 
 import java.io.IOException;
@@ -11,13 +12,12 @@ class AllBreakersApp {
     private static final AlgorithmInputFactory algorithmInputFactory = new AlgorithmInputFactory();
 
     public static void main(String[] args) throws IOException {
-//        process("a_example.txt");
-//        process("a_example.txt");
+        process("a_example.txt");
         process("b_read_on.txt");
-//        process("c_incunabula.txt");
+        process("c_incunabula.txt");
 //        process("d_tough_choices.txt");
-//        process("e_so_many_books.txt");
-//        process("f_libraries_of_the_world.txt");
+        process("e_so_many_books.txt");
+        process("f_libraries_of_the_world.txt");
     }
 
     private static void process(String fileName) throws IOException {
@@ -31,6 +31,7 @@ class AllBreakersApp {
         Output output = new Output();
         fullCycle(libraries, availableTime, currentDay, output);
 
+        new FileFactory().write("result_" + fileName, output.description());
         System.out.println(output.description());
     }
 
@@ -51,7 +52,7 @@ class AllBreakersApp {
             availableTime -= theBestLibrary.getSignupTimeDays();
 
             // remove all books to not include them again
-            List<Book> booksThatWillBeScannedTillDeadline = theBestLibrary.booksThatWillBeScannedInNext(availableTime - currentDay);
+            List<Book> booksThatWillBeScannedTillDeadline = theBestLibrary.booksThatWillBeScannedInNext(availableTime);
             output.add(theBestLibrary.getId(), booksThatWillBeScannedTillDeadline.stream().map(Book::getId).collect(toList()));
 
             // remove from all libraries

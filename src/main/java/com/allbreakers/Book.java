@@ -1,6 +1,6 @@
 package com.allbreakers;
 
-class Book {
+class Book implements Comparable<Book> {
     private int id;
     private int score;
 
@@ -13,7 +13,12 @@ class Book {
         return id;
     }
 
-    long getScore() {
+    int getScore() {
         return score;
+    }
+
+    @Override
+    public int compareTo(Book o) {
+        return Integer.compare(o.getScore(), score);
     }
 }
