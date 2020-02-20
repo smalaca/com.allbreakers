@@ -5,6 +5,8 @@ import com.allbreakers.file.Output;
 import java.io.IOException;
 import java.util.List;
 
+import static java.util.stream.Collectors.toList;
+
 class AllBreakersApp {
     private static final AlgorithmInputFactory algorithmInputFactory = new AlgorithmInputFactory();
 
@@ -49,12 +51,8 @@ class AllBreakersApp {
             availableTime -= theBestLibrary.getSignupTimeDays();
 
             // remove all books to not include them again
-            List<Integer> booksThatWillBeScannedTillDeadline = theBest.booksThatWillBeScannedInNext(availableTime - currentDay);
-            output.add(theBest.getId(), booksThatWillBeScannedTillDeadline);
-            // wtf start
             List<Book> booksThatWillBeScannedTillDeadline = theBestLibrary.booksThatWillBeScannedInNext(availableTime - currentDay);
-            scanningFacility.add(booksThatWillBeScannedTillDeadline);
-            // wtf end
+            output.add(theBestLibrary.getId(), booksThatWillBeScannedTillDeadline.stream().map(Book::getId).collect(toList()));
 
             // remove from all libraries
             for (Library library : libraries) {
