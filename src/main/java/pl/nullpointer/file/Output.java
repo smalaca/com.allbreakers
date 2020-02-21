@@ -1,4 +1,4 @@
-package com.allbreakers.file;
+package pl.nullpointer.file;
 
 import java.util.*;
 import java.util.stream.Collectors;

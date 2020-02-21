@@ -1,4 +1,4 @@
-package com.allbreakers.file;
+package pl.nullpointer.file;
 
 import java.util.ArrayList;
 import java.util.List;

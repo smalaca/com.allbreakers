@@ -1,9 +1,9 @@
-package com.allbreakers;
+package pl.nullpointer;
 
-import com.allbreakers.file.FileContent;
-import com.allbreakers.file.FileLine;
-import com.allbreakers.file.FileReader;
-import com.allbreakers.file.FileValue;
+import pl.nullpointer.file.FileContent;
+import pl.nullpointer.file.FileLine;
+import pl.nullpointer.file.FileReader;
+import pl.nullpointer.file.FileValue;
 
 import java.io.IOException;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.allbreakers;
+package pl.nullpointer;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -58,7 +58,7 @@ class Library {
 
     private int calculateScore(int daysForCalculation) {
         return booksThatWillBeScannedInNext(daysForCalculation).stream()
-                .map(Book::getScore).reduce(0, Integer::sum);
+                .map(Book::getScore).reduce(0, Integer::sum) / signupTimeDays;
     }
 
     List<Book> booksThatWillBeScannedInNext(int daysForCalculation) {

@@ -1,7 +1,7 @@
-package com.allbreakers;
+package pl.nullpointer;
 
-import com.allbreakers.file.FileFactory;
-import com.allbreakers.file.Output;
+import pl.nullpointer.file.FileFactory;
+import pl.nullpointer.file.Output;
 
 import java.io.IOException;
 import java.util.List;
@@ -13,11 +13,11 @@ class AllBreakersApp {
 
     public static void main(String[] args) throws IOException {
          process("a_example.txt");
-        process("b_read_on.txt");
-        process("c_incunabula.txt");
-//        process("d_tough_choices.txt");
-        process("e_so_many_books.txt");
-        process("f_libraries_of_the_world.txt");
+//        process("b_read_on.txt");
+//        process("c_incunabula.txt");
+        process("d_tough_choices.txt");
+//        process("e_so_many_books.txt");
+//        process("f_libraries_of_the_world.txt");
     }
 
     private static void process(String fileName) throws IOException {

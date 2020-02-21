@@ -1,4 +1,4 @@
-package com.allbreakers;
+package pl.nullpointer;
 
 class Book {
     private int id;

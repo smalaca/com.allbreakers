@@ -1,4 +1,4 @@
-package com.allbreakers;
+package pl.nullpointer;
 
 import java.util.ArrayList;
 import java.util.HashMap;
